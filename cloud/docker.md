@@ -8,6 +8,15 @@ https://www.runoob.com/docker/docker-container-usage.html
 
 https://docs.docker.com/engine/reference/run/
 
+#### 安装
+
+https://docs.docker.com/engine/install/centos/
+
+```
+#启动
+sudo systemctl start|stop|restart docker
+```
+
 ### 常用命令
 
 #### 帮助
@@ -26,10 +35,10 @@ docker pull imageName[:tag]
 docker images
 # 搜索镜像库可用镜像
 docker search xxx
-# 删除镜像
-docker rmi imageName[:tag]/image id
+# 删除镜像强制
+docker rmi [-f] imageName[:tag]/image id
 # 导出镜像
-docker save -o file.tar iamgeName1:[tag] imageName2[:tag]
+docker save -o file.tar imageName1:[tag] imageName2[:tag]
 # 导入镜像
 docker load -i file.tar
 ```
@@ -56,8 +65,8 @@ docker run -d --name ContainerName imageName[:tag] [命令] [参数]
 #### 容器管理
 
 ```
-# 删除
-docker rm 容器name or id
+# 删除 -f 强制
+docker rm [-f]容器name or id
 # 启动
 docker start 容器name or id
 # 重启，未启动也可以用
@@ -80,11 +89,11 @@ docker top 容器name or id
 docker inspect 容器name or id
 # 复制，参数反着就反着复制
 docker cp 物理机目录或文件 容器:目录或文件
-# 导出容器 不会包含-v 的目录，--volumes-from 其他容器名 会包含
+# 导出容器,只包含文件系统而已(导出后再导入无命令不建议使用,建议使用commit成镜像) 不会包含-v 的目录，--volumes-from 其他容器名 会包含
 docker export -o file.tar 容器name or id
 # 导入容器为镜像
 doker import file.tar imagename[:tag]
-# 基于当前容器制作镜像
+# 基于当前容器制作镜像会包含创建时候的命令和配置信息(文件为主)
 docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 
 ```
