@@ -39,7 +39,7 @@ docker search xxx
 docker rmi [-f] imageName[:tag]/image id
 # 导出镜像
 docker save -o file.tar imageName1:[tag] imageName2[:tag]
-# 导入镜像
+# 导入镜像自动和导出名字tag一样
 docker load -i file.tar
 ```
 
@@ -102,13 +102,27 @@ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 
 ```
 # 使用当前Dockerfile 文件
-docker build . [-t imageName[:tag]]
+docker build -t imageName[:tag] .
 # 指定Dockerfile文件
 docker build -f Dockerfile路径
 # 登录容器hub
 docker login
-# docker push image[:tag]
+# 推送，推送前镜像需要修改tag 为YOUR_DOCKERHUB_NAME/tag，如734839030/image ,默认tag为latest,或者:tag 自行制定
+docker push YOUR_DOCKERHUB_NAME/image[:tag]
+# 修改tag 
+docker tag sourceImage[:tag] targetImage[:tag]
 ```
+
+##### 网络
+
+```
+# 内置网络方案
+docker network ls
+# 默认创建容器是bridge 如果需要共享主机网络资源加参数
+--net=host
+```
+
+
 
 dockerFile 编写文档
 
