@@ -75,8 +75,8 @@ docker restart 容器name or id
 docker stop 容器name or id
 # 进入容器
 docker exec -it 容器name or id 命令(常用/bin/bash)
-# 进入容器 退出会导致容器终止
-docer attach -it 容器name or id 命令(常用/bin/bash)
+# 进入容器可以管理标准输入输出 退出会导致容器终止,--sig-proxy=false 不退出
+docer attach [--sig-proxy=false] 容器name or id
 # 查看容器,默认查看运行中的-a 可以查看所有
 docker ps [-a]
 # 日志,-f 会滚动
