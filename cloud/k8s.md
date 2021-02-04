@@ -44,7 +44,7 @@ vim /etc/sudoers
 usermod -g docker kube
 # 切换到kube
 su - kube
-#启动minikube 
+#启动minikube,默认是把k8s 整套塞到minikube的docker集群的
 minikube start
 # 打开管理端
 minikube dashboard
@@ -52,8 +52,29 @@ minikube dashboard
 minikube logs
 # ip
 minikube ip
+# 进入node节点
+minikube ssh [--node='minikube']
 # 查看服务的地址
 minikube service --url serviceName  -n namespace
+minikube service list
+# 集群简易仓库
+minikube addons enable registry
+
+# 查看registry cluster ip 
+kubectl get svc -A
+# 使用servce 的ip需要暴露下
+minikube tunnel 
+
+# docker 中设置insecure
+[kube@VM_74_46_centos ~]$ cat /etc/docker/daemon.json 
+{"storage-driver":"devicemapper", 
+  "registry-mirrors": ["https://registry.docker-cn.com"],
+   "insecure-registries" : ["cluster ip"]
+}
+
+docker build -t cluster-ip/test-img .
+docker push cluster-ip/test-img
+
 ```
 
 QA1: minikube start 22端口问题，遇到这个问题看这个https://github.com/kubernetes/minikube/issues/8163
@@ -71,6 +92,7 @@ QA2:coredns pod crashloopback
 # 先删除
 minikube delete
 minikube start --network-plugin=cni --cni=bridge
+后续minikube start 即可
 ```
 
 

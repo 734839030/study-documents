@@ -15,6 +15,11 @@ https://docs.docker.com/engine/install/centos/
 ```
 #启动
 sudo systemctl start|stop|restart docker
+# 启动失败用下面命令看原因
+sudo dockerd --debug
+# daemon 配置文件
+/etc/docker/daemon.json
+配置参考 https://docs.docker.com/engine/reference/commandline/dockerd/
 ```
 
 ### 常用命令
@@ -54,7 +59,7 @@ docker run -d --name ContainerName imageName[:tag] [命令] [参数]
 # 其余常用参数
 # 目录映射，多个则多个-v参数
 -v 物理机目录:容器目录 
-# 端口映射 多个则多个-P参数
+# 端口映射 多个则多个-p参数
 -p 物理机端口:容器端口
 # 默认端口映射,dockerfile中expose的端口自动随机映射到主机
 -P 
@@ -99,6 +104,8 @@ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 ```
 
 #### 制作镜像
+
+文档https://docs.docker.com/engine/reference/builder/
 
 ```
 # 使用当前Dockerfile 文件
