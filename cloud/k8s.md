@@ -24,6 +24,8 @@ kubectl exec -it podId -n namespace  -- /bin/bash
 kubectl logs -f podName -n namespace
 # 获取全部资源
 kubectl get all -n namespace -o wide
+# 查看信息
+kubectl describe pods/fit-key-agent-jdssj -n namespace
 ```
 
 ##### 编排
