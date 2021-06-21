@@ -126,7 +126,7 @@ docker tag sourceImage[:tag] targetImage[:tag]
 # 内置网络方案
 docker network ls
 # 默认创建容器是bridge 如果需要共享主机网络资源加参数
---net=host
+--network=host
 ```
 
 
