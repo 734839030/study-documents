@@ -4,7 +4,7 @@
 
 - 在 typora 设置中找到图像设置，主要需要将图片复制到`assets/images`目录,这样在github上就可以显示图片了；
 
-  ![image-20201123125035218](assets/images/image-20201123125035218.png)
+  ![image-20201123125035218](assets/images/image-20201123125035218.png) 
   
   
   
