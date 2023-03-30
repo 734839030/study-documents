@@ -57,7 +57,7 @@ docker run -it --name ContainerName imageName[:tag] [命令] [参数]
 #后台创建并运行
 docker run -d --name ContainerName imageName[:tag] [命令] [参数] 
 # 其余常用参数
-# 目录映射，多个则多个-v参数
+# 目录映射，多个则多个-v参数，主机为空则会让容器为空，有的镜像会启动会复制数据到映射目录例外
 -v 物理机目录:容器目录 
 # 端口映射 多个则多个-p参数
 -p 物理机端口:容器端口
@@ -126,7 +126,7 @@ docker tag sourceImage[:tag] targetImage[:tag]
 # 内置网络方案
 docker network ls
 # 默认创建容器是bridge 如果需要共享主机网络资源加参数
---network=host
+--network host
 ```
 
 
